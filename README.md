@@ -6,7 +6,7 @@
 
 <br>
 
-<figure>
+<figure align="center">
 <img src="./mjs-cover.jpeg" alt="모던 자바스크립트 Deep Dive 표지 사진" width="300"/>
 <figcaption>모던 자바스크립트 Deep Dive</figcatipn>
 </figure>
@@ -33,7 +33,7 @@
 
 <br>
 
-<figure>
+<figure align="center">
 <img src="./edx-python-certificate.png" alt="edX '파이썬을 이용한 컴퓨터 과학과 프로그래밍 입문' 수료증" width="300"/>
 <figcaption>edX 컴퓨터 과학과 프로그래밍 입문 수료증</figcaption>
 </figure>
@@ -60,7 +60,7 @@
 
 <br>
 
-<figure>
+<figure align="center">
 <img src="./fcc-web-certificate.png" alt="freeCodeCamp '반응형 웹 디자인' 과정 수료증" width="300"/>
 <figcaption>FCC 반응형 웹 디자인 과정 수료증</figcaption>
 </figure>
@@ -71,14 +71,14 @@
 
 <br>
 
-<figure>
+<figure align="center">
 <img src="./fcc-js-certificate.png" alt="freeCodeCamp '자바스크립트 알고리즘 & 자료구조' 과정 수료증" width="300"/>
 <figcaption>FCC 자바스크립트 과정 수료증</figcaption>
 </figure>
 
 <br>
 
-그 후 React를 공부하려 했으나 잘 되지 않았습니다. freeCodeCamp에서는 VanillaJS로 알고리즘을 주로 다뤘을 뿐, 웹앱을 구현해보지는 않았습니다. 그런 상황에서 React가 무엇을 보완해주는지 알기는 어려웠습니다.
+그 후 React를 공부하려 했으나 잘 되지 않았습니다. freeCodeCamp에서는 VanillaJS로 알고리즘을 주로 다뤘을 뿐, 웹앱을 구현해보지는 않았습니다. 그런 상황에서 React를 배우려니 앞뒤가 뒤바뀐 느낌이 들었습니다.
 
 <br>
 
@@ -86,7 +86,7 @@
 
 <br>
 
-<figure>
+<figure align="center">
 <img src="./velopert-react.jpeg" alt="김민준(Velopert) 님의 '리액트를 다루는 기술'" width="300"/>
 <figcaption>리액트를 다루는 기술</figcaption>
 </figure>
@@ -97,3 +97,6 @@ React를 할 때가 아니라는 생각이 들었습니다. VanillaJS를 먼저 
 
 <br>
 
+---
+
+<br>
