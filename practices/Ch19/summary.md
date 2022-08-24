@@ -543,3 +543,73 @@ console.log(person.hasOwnProperty("age")); // false
 > _307p_
 
 <br>
+
+```javascript
+const person = {
+  name: "Lee",
+  address: "Seoul",
+};
+
+// for...in 문의 변수 prop에 person 객체의 프로퍼티 키가 할당된다.
+for (const key in person) {
+  console.log(key + ": " + person[key]);
+}
+// name: Lee
+// address: Seoul
+```
+
+<br>
+
+> `for ... in` 문은 객체의 프로토타입 체인 상에 존재하는 모든 프로토타입의 프로퍼티 중에서 프로퍼티 어트리뷰트 `[[Enumerable]]`의 값이 `true`인 프로퍼티를 순회하며 열거(enumeration)한다.
+>
+> _309p_
+
+<br>
+
+### 19.14.2 `Object.keys`/`values`/`entries` 메서드
+
+> `Object.keys` 메서드는 객체 자신의 열거 가능한(enumerable) 프로퍼티 키를 배열로 반환한다.
+>
+> _311p_
+
+<br>
+
+```javascript
+const person = {
+  name: "Lee",
+  address: "Seoul",
+  __proto__: { age: 20 },
+};
+
+console.log(Object.keys(person)); // ["name", "address"]
+```
+
+<br>
+
+> ES8에서 도입된 `Object.values` 메서드는 객체 자신의 열거 가능한 프로퍼티 값을 배열로 반환한다.
+>
+> _312p_
+
+<br>
+
+```javascript
+console.log(Object.values(person)); // ["Lee", "Seoul"]
+```
+
+<br>
+
+> ES8에서 도입된 `Object.entries` 메서드는 객체 자신의 열거 가능한 프로퍼티 키와 값의 쌍의 배열을 배열에 담아 반환한다.
+>
+> _312p_
+
+<br>
+
+```javascript
+console.log(Object.entries(person)); // [["name", "Lee"], ["address", "Seoul"]]
+
+Object.entries(person).forEach(([key, value]) => console.log(key, value));
+/*
+name Lee
+address Seoul
+*/
+```
