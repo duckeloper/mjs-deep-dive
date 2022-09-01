@@ -130,3 +130,187 @@ Person.sayHello(); // Hello!
 >   }
 > }
 > ```
+>
+> _423p_
+
+<br>
+
+> `constructor`는 메서드로 해석되는 것이 아니라 클래스가 평가되어 생성한 함수 객체 코드의 일부가 된다. 다시 말해, 클래스 정의가 평가되면 `constructor`의 기술된 동작을 하는 함수 객체가 생성된다.
+>
+> _426p_
+
+<br>
+
+### 25.5.2 프로토타입 메서드
+
+> 클래스 몸체에서 정의한 메서드는 생성자 함수에 의한 객체 생성 방식과는 다르게 클래스의 `prototype` 프로퍼티에 메서드를 추가하지 않아도 기본적으로 프로토타입 메서드가 된다.
+>
+> ```javascript
+> class Person {
+>   // 생성자
+>   constructor(name) {
+>     // 인스턴스 생성 및 초기화
+>     this.name = name;
+>   }
+>
+>   // 프로토타입 메서드
+>   sayHi() {
+>     console.log(`Hi! My name is ${this.name}`);
+>   }
+> }
+>
+> const me = new Person("Lee");
+> me.sayHi(); // Hi! My name is Lee
+> ```
+>
+> _429p_
+
+<br>
+
+### 25.5.3 정적 메서드
+
+> 정적(static) 메서드는 인스턴스를 생성하지 않아도 호출할 수 있는 메서드를 말한다.
+> _430p_
+
+<br>
+
+> 클래스에서는 메서드에 `static` 키워드를 붙이면 정적 메서드(클래스 메서드)가 된다.
+> _431p_
+
+<br>
+
+```javascript
+class Person {
+  // 생성자
+  constructor(name) {
+    // 인스턴스 생성 및 초기화
+    this.name = name;
+  }
+}
+```
+
+> 정적 메서드는 인스턴스로 호출할 수 없다.
+>
+> _432p_
+
+<br>
+
+### 25.5.4 정적 메서드와 프로토타입 메서드의 차이
+
+> 정적 메서드와 프로토타입 메서드의 차이는 다음과 같다.
+>
+> 1. 정적 메서드와 프로토타입 메서드는 자신이 속해 있는 프로토타입 체인이 다르다.
+> 2. 정적 메서드는 클래스로 호출하고 프로토타입 메서드는 인스턴스로 호출한다.
+> 3. 정적 메서드는 인스턴스 프로퍼티를 참조할 수 없지만 프로토타입 메서드는 인스턴스 프로퍼티를 참조할 수 있다.
+>
+> _432p_
+
+<br>
+
+### 25.5.5 클래스에서 정의한 메서드의 특징
+
+> 1. `function` 키워드를 생략한 메서드 축약 표현을 사용한다.
+> 2. 객체 리터럴과는 다르게 클래스에 메서드를 정의할 때는 콤마가 필요 없다.
+> 3. 암묵적으로 strict mode로 실행된다.
+> 4. `for ... in` 문이나 `Object.keys` 메서드 등으로 열거할 수 없다. 즉, 프로퍼티의 열거 가능 여부를 나타내며, 불리언 값을 갖는 프로퍼티 어트리뷰트 `[[Enumerable]]`의 값이 `false`다.
+> 5. 내부 메서드 `[[Construct]]`를 갖지 않는 non-constructor다. 따라서 `new` 연산자와 함께 호출할 수 없다.
+>
+> _434p_
+
+<br>
+
+## 25.6 클래스의 인스턴스 생성 과정
+
+#### 1. 인스턴스 생성과 `this` 바인딩
+
+#### 2. 인스턴스 초기화
+
+#### 3. 인스턴스 반환
+
+```javascript
+class Person {
+  // 생성자
+  constructor(name) {
+    // 1. 암묵적으로 인스턴스가 생성되고 this에 바인딩된다.
+    console.log(this); // Person {}
+    console.log(Object.getPrototypeOf(this) === Person.prototype);
+
+    // 2. this에 바인딩되어 있는 인스턴스를 초기화한다.
+    this.name = name;
+
+    // 3. 완성된 인스턴스가 바인딩된 this가 암묵적으로 반환된다.
+  }
+}
+```
+
+<br>
+
+## 25.7 프로퍼티
+
+### 25.7.1 인스턴스 프로퍼티
+
+```javascript
+class Person {
+  constructor(name) {
+    // 인스턴스 프로퍼티
+    this.name = name;
+  }
+}
+
+const me = new Person("Lee");
+console.log(me); // Person {name: "Lee"}
+```
+
+### 25.7.2 접근자 프로퍼티
+
+> 접근자 프로퍼티(accessor property)는 자체적으로는 값(`[[Value]]` 내부 슬롯)을 갖지 않고 다른 데이터 프로퍼티의 값을 읽거나 저장할 때 사용하는 접근자 함수(accessor function)로 구성된 프로퍼티다.
+>
+> _437p_
+
+<br>
+
+```javascript
+const person = {
+  // 데이터 프로퍼티
+  firstName: "Ungmo",
+  lastName: "Lee",
+
+  // fullName은 접근자 함수로 구성된 접근자 프로퍼티다.
+  // getter 함수
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`;
+  },
+  // setter 함수
+  set fullName(name) {
+    // 배열 디스트럭처링 할당: "36.1. 배열 디스트럭처링 할당" 참고
+    [this.firstName, this.lastName] = name.split(" ");
+  },
+};
+
+// 데이터 프로퍼티를 통한 프로퍼티 값의 참조.
+console.log(`${person.firstName} ${person.lastName}`); // Ungmo Lee
+
+// 접근자 프로퍼티를 통한 프로퍼티 값의 저장
+// 접근자 프로퍼티 fullName에 값을 저장하면 setter 함수가 호출된다.
+person.fullName = "Heegun Lee";
+console.log(person); // {firstName: "Heegun", lastName: "Lee"}
+
+// 접근자 프로퍼티를 통한 프로퍼티 값의 참조
+// 접근자 프로퍼티 fullName에 접근하면 getter 함수가 호출된다.
+console.log(person.fullName); // Heegun Lee
+
+// fullName은 접근자 프로퍼티다.
+// 접근자 프로퍼티는 get, set, enumerable, configurable 프로퍼티 어트리뷰트를 갖는다.
+console.log(Object.getOwnPropertyDescriptor(person, "fullName"));
+// {get: ƒ, set: ƒ, enumerable: true, configurable: true}
+```
+
+<br>
+
+### 25.7.3 클래스 필드 정의 제안
+
+> 클래스 필드(필드 또는 멤버)는 클래스 기반 객체지향 언어에서 클래스가 생성할 인스턴스의 프로퍼티를 가리키는 용어다.
+>
+> _439p_
+
+<br>
